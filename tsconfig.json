@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "strict": true,
+    "rootDirs": ["src"],
+    "lib": ["es2021"],
+    "target": "es2021",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "module": "Node16",
-    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "types": ["node"],
     "outDir": "./dist"
   },
   "include": ["src/**/*.ts"],

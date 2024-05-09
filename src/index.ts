@@ -1,5 +1,10 @@
 import dotenv from 'dotenv'
-dotenv.config();
+dotenv.config({
+    path: [
+        '.env.sample',
+        '.env'
+    ]
+});
 import app from './app.js'
 import http, {Server} from 'node:http'
 import {AddressInfo} from 'node:net'

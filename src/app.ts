@@ -8,7 +8,7 @@ app.use(express.raw())
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.get('/', (req: Request, res: Response): Response => {
-    return res.send('Hello world')
+    return res.send('Hello update test')
 })
 
 

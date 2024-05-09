@@ -9,7 +9,6 @@ const basename = path.basename(import.meta.filename)
 const env = process.env.NODE_ENV || 'development'
 const db: IDb = {} as IDb;
 
-console.table(config)
 
 const sequelize: Sequelize = new Sequelize(config.database, config.username, config.password, config);
 
