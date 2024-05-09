@@ -4,7 +4,8 @@
   "description": "Api pour l'app money-minder",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "build": "npx tsc -p ."
   },
   "author": "",
   "license": "MIT",
