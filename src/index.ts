@@ -1,12 +1,12 @@
-import express from 'express'
+import express, {Express} from 'express'
 
-const port = process.env.PORT || 3000
-const app = express()
+const port: number | string = process.env.PORT || 3000
+const app: Express = express()
 
-app.get('/', (req, res) => {
+app.get('/', (req, res): void => {
   res.send('Hello world')
 })
 
-app.listen(port, () => {
+app.listen(port, (): void => {
   console.log('API listening on port ' + port)
 })
