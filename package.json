@@ -1,0 +1,15 @@
+{
+  "name": "money-minder-api",
+  "version": "0.0.1",
+  "description": "Api pour l'app money-minder",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start" : "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
