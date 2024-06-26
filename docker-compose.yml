@@ -16,14 +16,27 @@ services:
     expose:
       - ${MYSQLDB_DOCKER_PORT}
 
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - ${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}
+    volumes:
+      - mongodb:/var/lib/mongodb
+    expose:
+      - ${MONGODB_DOCKER_PORT}
+
   app:
     depends_on:
       - mysqldb
+      - mongodb
     build:
       context: .
       dockerfile: Dockerfile.dev
     command: npm run dev
-    restart: unless-stopped
+    restart: on-failure
     env_file:
       - ./.env
     ports:
@@ -35,6 +48,8 @@ services:
       - DB_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
       - DB_DBNAME=${MYSQLDB_DATABASE}
       - DB_PORT=${MYSQLDB_DOCKER_PORT}
+      - MONGODB_URL=${MONGODB_URL}
+      - MONGODB_SESSION_URL=${MONGODB_SESSION_URL}
       - ENVIRONMENT=production
     stdin_open: true
     expose:
@@ -43,5 +58,7 @@ services:
     volumes:
       - ./:/usr/src/app
       - ./nodemon.json:/usr/src/app/nodemon.json
+      - ./node_modules:/usr/src/app/node_modules
 volumes:
   db:
+  mongodb:

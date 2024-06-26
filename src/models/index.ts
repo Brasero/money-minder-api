@@ -2,10 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {Sequelize, DataTypes, Model} from "sequelize";
 import config from "../config/config.js";
+import {fileURLToPath} from 'node:url'
 
 const cwd = process.cwd()
-const dirname = import.meta.dirname
-const basename = path.basename(import.meta.filename)
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+const basename = path.basename(filename)
 const env = process.env.NODE_ENV || 'development'
 const db: IDb = {} as IDb;
 

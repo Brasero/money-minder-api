@@ -1,6 +1,6 @@
 {
   "verbose": true,
-  "watch": ["src/**/*.ts"],
+  "watch": ["src/**/*.ts", "src/**/**/*.ts"],
   "execMap": {
     "ts": "node --inspect=0.0.0.0:9229 --experimental-specifier-resolution=node --loader ts-node/esm"
   }

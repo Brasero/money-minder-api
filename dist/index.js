@@ -1,4 +1,3 @@
-var _a;
 import dotenv from 'dotenv';
 dotenv.config({
     path: [
@@ -8,13 +7,13 @@ dotenv.config({
 });
 import app from './app.js';
 import http from 'node:http';
-const port = normalizePort(process.env.NODE_DOCKER_PORT || 3000);
+const port = normalizePort(process.env.NODE_DOCKER_PORT || 8080);
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);
 server.on('listening', onListening);
 server.on("error", onError);
-(_a = app.db) === null || _a === void 0 ? void 0 : _a.sequelize.authenticate({ logging: false }).then(() => {
+app.db?.sequelize.authenticate({ logging: false }).then(() => {
     console.log("\n Connected to database. \n\n\n");
 }).catch((err) => {
     console.error('\n Unable to reach database: \n\n\n' + err);
@@ -38,7 +37,7 @@ function normalizePort(val) {
 }
 function onListening() {
     const addr = server.address();
-    const bind = typeof addr === 'string' ? `pipe ${addr}` : typeof addr !== null ? `port ${addr === null || addr === void 0 ? void 0 : addr.port}` : `port `;
+    const bind = typeof addr === 'string' ? `pipe ${addr}` : typeof addr !== null ? `port ${addr?.port}` : `port `;
     console.log(`API Listening on ${bind}`);
 }
 function onError(error) {
