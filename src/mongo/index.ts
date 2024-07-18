@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 dotenv.config({
     path: [
         '.env.sample',
@@ -7,6 +7,6 @@ dotenv.config({
     ]
 });
 
-mongoose.connect(process.env.MONGODB_URL).then(() => console.log('Connected to mongodb'))
+mongoose.connect(process.env.MONGODB_URL).then(() => console.log('Connected to mongodb'),(reason) => console.log('Failed to acces DB' + reason))
 
 export default mongoose;

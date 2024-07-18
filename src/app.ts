@@ -1,8 +1,9 @@
 import express, {Application, Request, Response} from "express";
-import db, {IDb} from "./models/index.js";
+import db, {IDb} from "./sequelize/models/index.js";
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
-import Income from "./mongo/model/Income";
+// @ts-ignore
+import Income from "./mongo/model/Income.ts";
 
 const app: Application & {db?: IDb} = express()
 app.db = db;

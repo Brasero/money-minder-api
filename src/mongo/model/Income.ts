@@ -1,6 +1,15 @@
-import mongo from '../index'
+// @ts-ignore
+import mongo from '../index.ts'
+import {Types} from "mongoose";
 
-const incomeSchema = new mongo.Schema({
+export interface IIncome {
+    _id : Types.ObjectId;
+    userId: number;
+    amount: number;
+    origin: string;
+}
+
+ export const incomeSchema = new mongo.Schema<IIncome>({
     userId: {
         type: Number,
         require: true

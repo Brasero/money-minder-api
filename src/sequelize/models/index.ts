@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {Sequelize, DataTypes, Model} from "sequelize";
-import config from "../config/config.js";
+import config from "../../config/config";
 import {fileURLToPath} from 'node:url'
 
 const cwd = process.cwd()
