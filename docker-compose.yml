@@ -48,7 +48,7 @@ services:
       - DB_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
       - DB_DBNAME=${MYSQLDB_DATABASE}
       - DB_PORT=${MYSQLDB_DOCKER_PORT}
-      - MONGODB_URL=${MONGODB_URL}
+      - MONGODB_URL=mongodb://mongodb:27017/money_minder
       - MONGODB_SESSION_URL=${MONGODB_SESSION_URL}
       - ENVIRONMENT=production
     stdin_open: true
