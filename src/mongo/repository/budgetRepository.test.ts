@@ -1,5 +1,6 @@
 import mongoose from "../index";
 import {
+    addBudgetItemToBudgetById,
     addIncomeToBudgetById,
     createBudget,
     deleteBudgetById,
@@ -7,8 +8,8 @@ import {
     findBudgetByUserID,
     updateBudgetById
 } from "./budgetRepository";
-import Income from "../model/Income";
 import {createIncome, deleteIncomeById} from "./incomeRepository";
+import {createBudgetItem, deleteBudgetItemById} from "./budgetItemRepository";
 
 describe('BudgetTest',  function () {
     let budgetId: any
@@ -35,7 +36,7 @@ describe('BudgetTest',  function () {
         expect(budget).toBeDefined()
     })
 
-    test("findBudgetByUserID", async () => {
+    test("findBudgetByUserId", async () => {
         const budget = await findBudgetByUserID(userId)
         if (typeof budget !== "boolean") {
             expect(budget).not.toBeFalsy()
@@ -69,7 +70,17 @@ describe('BudgetTest',  function () {
         expect(result).toBe(true)
         await deleteIncomeById(income._id)
     })
-
+    test('addBudgetItemToBudget', async () => {
+        const budgetItem = await createBudgetItem('Loisir', 100)
+        const result = await addBudgetItemToBudgetById(budgetId, budgetItem)
+        const budget = await findBudgetById(budgetId)
+        if(typeof budget !== "boolean"){
+            console.log(budget)
+            expect(budget.budgetItems[0]._id.toString()).toBe(budgetItem._id.toString())
+        }
+        expect(result).toBe(true)
+        await deleteBudgetItemById(budgetItem._id)
+    })
     test("deleteBudgetById", async () => {
         await deleteBudgetById(budgetId);
         const budget = await findBudgetById(budgetId)
