@@ -14,6 +14,42 @@ export function createBudgetItem(name: string, amount: number){
     }
 }
 
+export function findBudgetItemById(id: any){
+    try{
+        return BudgetItem.findById(id).then(
+            (doc) => {
+                if(doc){
+                    return doc
+                }
+                return false;
+            },
+            (reason) => {
+                console.log(reason)
+                return false
+            })
+    } catch (reason) {
+        console.log(reason)
+        return false;
+    }
+}
+
+export async function updateBudgetItemById(id, update){
+    try{
+        return BudgetItem.findByIdAndUpdate(id, {...update}).then((doc) => {
+            if(doc) {
+                return doc
+            }
+            return false
+        }, (reason) => {
+            console.log(reason)
+            return false
+        })
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
+
 export async function addSpentToBudgetItemById(id: Types.ObjectId | string, spent){
     try{
         const budgetItem = await BudgetItem.findById(id).exec()
@@ -25,6 +61,19 @@ export async function addSpentToBudgetItemById(id: Types.ObjectId | string, spen
         return false
     }catch(reason){
         console.log(reason)
+        return false
+    }
+}
+
+export async function deleteBudgetItemById(id: Types.ObjectId | string){
+    try {
+        return BudgetItem.deleteOne({_id:id}).then(() => {
+            return true
+        }, () => {
+            return false
+        })
+    }catch (e){
+        console.log(e)
         return false
     }
 }

@@ -1,4 +1,4 @@
-import {createSpent, deleteSpentById, findSpentById} from "./spentRepository";
+import {createSpent, deleteSpentById, findSpentById, updateSpentById} from "./spentRepository";
 import mongoose from "../index";
 
 describe('SpentTest', function(){
@@ -14,6 +14,20 @@ describe('SpentTest', function(){
             expect(spent.amount).toBe(amount)
             expect(spent.description).toBe(description)
     }, 50000)
+    test('updateSpentById', async () => {
+        const update = {amount: 50, description: 'Jeux vidéo'}
+        await updateSpentById(spentId,update)
+        const spent = await findSpentById(spentId)
+        if(typeof spent !== "boolean"){
+            expect(spent).not.toBeFalsy()
+            expect(spent.amount).toBe(50)
+            expect(spent.description).toBe("Jeux vidéo")
+            const id = spent._id
+            expect(id).toStrictEqual(spentId)
+        } else {
+            expect(spent).toBeFalsy()
+        }
+    })
     test('deleteSpentById', async () => {
         await deleteSpentById(spentId);
         const spent = await findSpentById(spentId)

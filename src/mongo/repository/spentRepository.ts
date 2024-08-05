@@ -35,6 +35,23 @@ export function findSpentById(id: any){
     }
 }
 
+export async function updateSpentById(id,update){
+    try{
+        return Spent.findByIdAndUpdate(id, {...update}).then((doc) => {
+            if(doc){
+                return doc
+            }
+            return false
+        }, (reason) => {
+            console.log(reason)
+            return false
+        })
+    } catch (e){
+        console.log(e)
+        return false
+    }
+}
+
 export async function deleteSpentById(id: Types.ObjectId | string){
     try{
         return Spent.deleteOne({_id: id}).then(() => {

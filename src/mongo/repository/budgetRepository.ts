@@ -94,3 +94,17 @@ export async function addIncomeToBudgetById(id: Types.ObjectId | string, income)
         return false
     }
 }
+export async function addBudgetItemToBudgetById(id: Types.ObjectId | string, budgetItem){
+    try {
+        const budget = await Budget.findById(id).exec()
+        if(budget){
+            budget.budgetItems.push(budgetItem)
+            await budget.save()
+            return true
+        }
+        return false
+    } catch (reason){
+        console.log(reason)
+        return false
+    }
+}
