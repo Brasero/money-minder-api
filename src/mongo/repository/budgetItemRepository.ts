@@ -28,3 +28,16 @@ export async function addSpentToBudgetItemById(id: Types.ObjectId | string, spen
         return false
     }
 }
+
+export async function deleteBudgetItemById(id: Types.ObjectId | string){
+    try {
+        return BudgetItem.deleteOne({_id:id}).then(() => {
+            return true
+        }, () => {
+            return false
+        })
+    }catch (e){
+        console.log(e)
+        return false
+    }
+}
