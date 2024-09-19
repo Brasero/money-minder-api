@@ -5,7 +5,7 @@ interface IUser {
     pseudo: string,
     mail: string,
     mdp: string,
-    brithday: Date,
+    birthday: Date,
     code_validation: string | null,
 }
 
@@ -27,7 +27,7 @@ export function createUserIfNotExist(user: IUser){
                         pseudo: user.pseudo,
                         mail: user.mail,
                         mdp: user.mdp,
-                        birthday: user.brithday,
+                        birthday: user.birthday,
                         code_validation: null
                     }).then((user) => {
                         if(user) {
@@ -59,6 +59,22 @@ export function findUserById(id: number | string){
     } catch (reason){
         console.log(reason)
         return false
+    }
+}
+
+export function findUserByEmail(mail: string): Promise<string | IUser> | string {
+    try {
+        return utilisateur.findOne({
+            where: {
+                mail
+            }
+        }).then((user) => {
+            if (user) return user;
+            return 'User not found'
+        })
+    } catch (reason) {
+        console.error(reason)
+        return "An error occurred while looking for user";
     }
 }
 
