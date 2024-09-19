@@ -1,5 +1,5 @@
 import express, {Application, Request, Response} from "express";
-import db, {IDb} from "./sequelize/models/index.js";
+import db, {IDb} from "./sequelize/models";
 import session from 'express-session';
 import mongoStore from 'connect-mongo';
 // @ts-ignore

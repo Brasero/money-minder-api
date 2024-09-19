@@ -7,10 +7,11 @@ module.exports = (sequelize,DataTypes) => {
     user.init({
         nom: DataTypes.STRING,
         prenom: DataTypes.STRING,
+        pseudo: DataTypes.STRING,
         mail: DataTypes.STRING,
         mdp: DataTypes.STRING,
         birthday: DataTypes.DATE,
-        code_recup: {
+        code_validation: {
             type: DataTypes.STRING,
             defaultValue: null,
         }

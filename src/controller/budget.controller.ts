@@ -1,6 +1,6 @@
 import {createBudget} from "../mongo/repository/budgetRepository";
-
-export async function addBudget(req,res){
+import {Response,Request} from "express";
+export async function addBudget(req: Request,res:Response){
     const {name} = req.body
     if(!name){
         return res.status(403).send({success: false, message:"No data to process"})
