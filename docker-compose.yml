@@ -50,6 +50,8 @@ services:
       - DB_PORT=${MYSQLDB_DOCKER_PORT}
       - MONGODB_URL=mongodb://mongodb:27017/money_minder
       - MONGODB_SESSION_URL=${MONGODB_SESSION_URL}
+      - MONEY_JWT_SECRET=${MONEY_JWT_SECRET}
+      - MONEY_JWT_REFRESH_SECRET=${MONEY_JWT_REFRESH_SECRET}
       - ENVIRONMENT=production
     stdin_open: true
     expose:
